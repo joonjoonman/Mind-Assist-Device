@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const display = document.getElementById('display');
     const calculator = document.querySelector('.calculator');
     const container = document.querySelector('.container');
-    let currentInput = '';
+    let currentInput = ''; //Z
 
     function getRandomSize() {
         return 0.5 + Math.random(); // 0.5배에서 1.5배 사이의 랜덤 크기
