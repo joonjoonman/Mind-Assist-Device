@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const display = document.getElementById('display');
     const calculator = document.querySelector('.calculator');
     const container = document.querySelector('.container');
-    let currentInput = ''; //Z
+    let currentInput = '';
 
     function getRandomSize() {
         return 0.5 + Math.random(); // 0.5배에서 1.5배 사이의 랜덤 크기
@@ -39,6 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
+    function loadImage(imgFile, onSuccess, onError) {
+        const img = new Image();
+        img.src = imgFile;
+        img.onload = () => onSuccess(img);
+        img.onerror = () => onError();
+    }
+
     buttons.forEach(button => {
         button.addEventListener('click', () => {
             if (button.textContent === '=') {
@@ -47,27 +54,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     display.textContent = "it's okay, don't worry.";
                     
                     // 유튜브 영상 추가
-                    // const videoContainer = document.createElement('div');
-                    // videoContainer.classList.add('video-container');
-                    // videoContainer.style.opacity = 0;
-                    // videoContainer.style.transition = 'opacity 1s';
+                    const videoContainer = document.createElement('div');
+                    videoContainer.classList.add('video-container');
+                    videoContainer.style.opacity = 0;
+                    videoContainer.style.transition = 'opacity 1s';
                     
-                    // const iframe = document.createElement('iframe');
-                    // iframe.width = "560";
-                    // iframe.height = "315";
-                    // iframe.src = "https://www.youtube.com/embed/kqPwR39VMh0?si=2scMEElLnFlukXNg&autoplay=1";
-                    // iframe.title = "YouTube video player";
-                    // iframe.frameBorder = "0";
-                    // iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-                    // iframe.referrerPolicy = "strict-origin-when-cross-origin";
-                    // iframe.allowFullscreen = true;
+                    const iframe = document.createElement('iframe');
+                    iframe.width = "560";
+                    iframe.height = "315";
+                    iframe.src = "https://www.youtube.com/embed/j6hsP27X978?si=I7ByyXJiUsm55tsS&autoplay=1";
+                    iframe.title = "YouTube video player";
+                    iframe.frameBorder = "0";
+                    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+                    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+                    iframe.allowFullscreen = true;
                     
-                    // videoContainer.appendChild(iframe);
-                    // container.appendChild(videoContainer);
+                    videoContainer.appendChild(iframe);
+                    container.appendChild(videoContainer);
 
-                    // setTimeout(() => {
-                    //     videoContainer.style.opacity = 1;
-                    // }, 10);
+                    setTimeout(() => {
+                        videoContainer.style.opacity = 1;
+                    }, 10);
                     
                     // 이미지 불러오기 및 배치
                     const imageContainer = document.createElement('div');
@@ -79,14 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         const num = String(i).padStart(4, '0');
                         const imgFile = `img/IMG_${num}.JPG`;
 
-                        const frame = document.createElement('div');
-                        frame.classList.add('image-frame');
+                        loadImage(imgFile, (img) => {
+                            const frame = document.createElement('div');
+                            frame.classList.add('image-frame');
 
-                        const img = new Image();
-                        img.src = imgFile;
-                        img.alt = `Image ${num}`;
-                        img.classList.add('framed-image');
-                        img.onload = () => {
                             const sizeFactor = getRandomSize();
                             const elementWidth = 260 * sizeFactor;
                             const elementHeight = img.naturalHeight * (elementWidth / img.naturalWidth);
@@ -106,11 +109,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             setTimeout(() => {
                                 frame.style.opacity = 1;
                             }, 10);
-                        };
-                        img.onerror = (e) => {
-                            console.error(`Failed to load image: ${imgFile}`, e);
-                            frame.remove(); // 이미지 로드 실패 시 요소 제거
-                        };
+                        }, () => {
+                            console.error(`Failed to load image: ${imgFile}`);
+                        });
                     }
 
                 }, 2000);
