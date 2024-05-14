@@ -47,27 +47,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     display.textContent = "it's okay, don't worry.";
                     
                     // 유튜브 영상 추가
-                    const videoContainer = document.createElement('div');
-                    videoContainer.classList.add('video-container');
-                    videoContainer.style.opacity = 0;
-                    videoContainer.style.transition = 'opacity 1s';
+                    // const videoContainer = document.createElement('div');
+                    // videoContainer.classList.add('video-container');
+                    // videoContainer.style.opacity = 0;
+                    // videoContainer.style.transition = 'opacity 1s';
                     
-                    const iframe = document.createElement('iframe');
-                    iframe.width = "560";
-                    iframe.height = "315";
-                    iframe.src = "https://www.youtube.com/embed/kqPwR39VMh0?si=2scMEElLnFlukXNg&autoplay=1";
-                    iframe.title = "YouTube video player";
-                    iframe.frameBorder = "0";
-                    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-                    iframe.referrerPolicy = "strict-origin-when-cross-origin";
-                    iframe.allowFullscreen = true;
+                    // const iframe = document.createElement('iframe');
+                    // iframe.width = "560";
+                    // iframe.height = "315";
+                    // iframe.src = "https://www.youtube.com/embed/kqPwR39VMh0?si=2scMEElLnFlukXNg&autoplay=1";
+                    // iframe.title = "YouTube video player";
+                    // iframe.frameBorder = "0";
+                    // iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+                    // iframe.referrerPolicy = "strict-origin-when-cross-origin";
+                    // iframe.allowFullscreen = true;
                     
-                    videoContainer.appendChild(iframe);
-                    container.appendChild(videoContainer);
+                    // videoContainer.appendChild(iframe);
+                    // container.appendChild(videoContainer);
 
-                    setTimeout(() => {
-                        videoContainer.style.opacity = 1;
-                    }, 10);
+                    // setTimeout(() => {
+                    //     videoContainer.style.opacity = 1;
+                    // }, 10);
                     
                     // 이미지 불러오기 및 배치
                     const imageContainer = document.createElement('div');
